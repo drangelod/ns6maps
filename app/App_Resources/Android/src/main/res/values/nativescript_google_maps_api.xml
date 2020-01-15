@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nativescript_google_maps_api_key">REPLACE_WITH_ANDROID_KEY</string>
+</resources>

@@ -1,0 +1,6 @@
+
+android {  
+  project.ext {
+      googlePlayServicesVersion = "16.+"
+  }
+} 
