@@ -11,6 +11,8 @@
 import { isIOS, isAndroid } from "tns-core-modules/platform";
 const geolocation = require("nativescript-geolocation");
 const mapsModule = require("nativescript-google-maps-sdk");
+import { ImageSource } from "tns-core-modules/image-source";
+import { Image } from "tns-core-modules/ui/image";
 import * as http from "http";
 export default {
     data() {
@@ -101,7 +103,7 @@ export default {
                         that.latitude = location.latitude
                         that.longitude = location.longitude
                         that.mapView.removeAllMarkers()
-                        let searchurl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + that.latitude + "," + that.longitude + "&radius=1000&keyword=" + encodeURI(that.searchPhrase) + "&key=AIzaSyCnnXo6rqBp4ItB__nC80OyoLDYjxWcxBQ"
+                        let searchurl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + that.latitude + "," + that.longitude + "&radius=1000&keyword=" + encodeURI(that.searchPhrase) + "&key=REPLACE_WITH_PLACES_KEY"
                         http
                             .request({
                                 url: searchurl,
@@ -128,6 +130,11 @@ export default {
                                         marker.title = element.name;
                                         marker.type = element.types[0]
                                         marker.address = element.vicinity
+                                        // marker.color = "green"
+                                        let imageSource = ImageSource.fromFileSync("~/images/foodicon.png");
+                                        const icon = new Image();
+                                        icon.imageSource = imageSource;
+                                        marker.icon = icon;
                                         that.mapView.addMarker(marker);
                                     })
                                     if (isAndroid) {
